@@ -403,6 +403,91 @@
 		method = "smc";
 	};
 
+	thermal-zones {
+		cpu-thermal {
+			trips {
+				cpu_trip_critical: critical {
+					temperature = <96500>;
+					hysteresis = <0>;
+					type = "critical";
+				};
+
+				cpu_trip_hot: hot {
+					temperature = <80000>;
+					hysteresis = <1000>;
+					type = "hot";
+				};
+
+				cpu_trip_active_70: active-70 {
+					temperature = <70000>;
+					hysteresis = <2000>;
+					type = "active";
+				};
+
+				cpu_trip_active_60: active-60 {
+					temperature = <60000>;
+					hysteresis = <2000>;
+					type = "active";
+				};
+
+				cpu_trip_active_50: active-50 {
+					temperature = <50000>;
+					hysteresis = <2000>;
+					type = "active";
+				};
+
+				cpu_trip_active_40: active-40 {
+					temperature = <40000>;
+					hysteresis = <2000>;
+					type = "active";
+				};
+
+				cpu_trip_passive: passive {
+					temperature = <30000>;
+					hysteresis = <2000>;
+					type = "passive";
+				};
+			};
+
+			cooling-maps {
+				cpu-critical {
+					cooling-device = <&fan 6 6>;
+					trip = <&cpu_trip_critical>;
+				};
+
+				cpu-hot {
+					cooling-device = <&fan 5 5>;
+					trip = <&cpu_trip_hot>;
+				};
+
+				cpu-active-70 {
+					cooling-device = <&fan 4 4>;
+					trip = <&cpu_trip_active_70>;
+				};
+
+				cpu-active-60 {
+					cooling-device = <&fan 3 3>;
+					trip = <&cpu_trip_active_60>;
+				};
+
+				cpu-active-50 {
+					cooling-device = <&fan 2 2>;
+					trip = <&cpu_trip_active_50>;
+				};
+
+				cpu-active-40 {
+					cooling-device = <&fan 1 1>;
+					trip = <&cpu_trip_active_40>;
+				};
+
+				cpu-passive {
+					cooling-device = <&fan 0 0>;
+					trip = <&cpu_trip_passive>;
+				};
+			};
+		};
+	};
+
 	vdd_gpu: regulator-vdd-gpu {
 		compatible = "pwm-regulator";
 		pwms = <&pwm 1 8000>;
